@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#10b981" />
+  <title>Listado de entradas</title>
+  <link rel="stylesheet" href="/app.css">
+  <script src="/list.js" type="module" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <h1>Gran Peña Solidaria</h1>
+    <div class="subtitle">Todos por Juase</div>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <h1>Listado de entradas</h1>
+
+      <form id="filter" class="mt-1" novalidate>
+        <div class="row">
+          <div class="col">
+            <label for="token">Token vendedor (opcional)</label>
+            <input id="token" placeholder="Filtrar por token (6 dígitos)" inputmode="numeric" maxlength="6" pattern="[0-9]{6}">
+          </div>
+          <div class="col" style="align-self:end">
+            <button type="submit" class="btn-secondary">Filtrar</button>
+          </div>
+        </div>
+      </form>
+
+      <p id="counter" class="mt-1" aria-live="polite"></p>
+
+      <div class="table-wrap mt-1">
+        <table id="tbl">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Vendedor</th>
+              <th>Comprador</th>
+              <th>Monto</th>
+              <th>Estado</th>
+              <th class="hide-mobile">Acciones</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <nav class="nav mt-2">
+        <a href="/index.html">Cargar</a>
+        <a href="/scan.html">Escanear</a>
+        <a href="/admin.html">Admin</a>
+      </nav>
+    </div>
+  </div>
+</body>
+</html>

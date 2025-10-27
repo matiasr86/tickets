@@ -1,0 +1,10 @@
+docker build -t matiasr86/qr-tickets:latest .
+
+docker login
+docker push matiasr86/qr-tickets:latest
+
+
+
+docker run -d --name qr-tickets --env-file .env -p 6500:3000 matiasr86/qr-tickets:latest
+
+

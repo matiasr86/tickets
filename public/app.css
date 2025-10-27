@@ -1,0 +1,340 @@
+/* ===== Reset & base (mobile-first) ===== */
+:root{
+  --bg: #ffffff;
+  --fg: #111827;           /* gris 900 */
+  --muted: #6b7280;        /* gris 500 */
+  --border: #e5e7eb;       /* gris 200 */
+  --accent: #10b981;       /* verde */
+  --accent-weak: #EAFBF0;  /* menta suave (pedido anterior) */
+  --danger: #ef4444;       /* rojo 500 */
+  --warn: #f59e0b;         /* amber 500 */
+  --ok: #16a34a;           /* green 600 */
+  --radius: 14px;
+  --space: 16px;
+  --space-s: 10px;
+  --shadow: 0 8px 24px rgba(0,0,0,.08);
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg: #0b0e11;
+    --fg: #e5e7eb;
+    --muted: #9ca3af;
+    --border: #1f2937;
+    --accent: #34d399;
+    --accent-weak: #0f2a1c;
+    --danger: #f87171;
+    --warn: #fbbf24;
+    --ok: #22c55e;
+    --shadow: 0 12px 28px rgba(0,0,0,.45);
+  }
+}
+
+*{ box-sizing: border-box; }
+html, body{ height:100%; }
+body{
+  margin:0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Helvetica Neue", "Apple Color Emoji", "Segoe UI Emoji";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  padding: clamp(12px, 3vw, 24px);
+}
+
+/* ===== Layout ===== */
+h1,h2,h3{ margin: 0 0 12px; line-height:1.2; }
+h1{ font-size: clamp(22px, 5vw, 28px); }
+p{ margin: 8px 0; color: var(--muted); }
+
+.container{
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.card{
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: clamp(12px, 3vw, 18px);
+}
+
+/* ===== Formularios ===== */
+form{
+  display: grid;
+  gap: 14px;
+  margin: 8px 0 6px;
+}
+
+label{
+  display:block;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+input, button, select{
+  font: inherit;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="search"],
+input:not([type]),
+select{
+  width: 100%;
+  padding: 14px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--fg);
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+input:focus, select:focus{
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 20%, transparent);
+}
+
+button{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 16px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .04s ease, filter .15s ease, box-shadow .15s ease;
+  box-shadow: 0 6px 14px rgba(16, 185, 129, .25);
+  touch-action: manipulation;
+}
+button:active{ transform: translateY(1px) scale(.99); }
+button:disabled{ opacity:.6; cursor:not-allowed; }
+.btn-secondary{
+  background: transparent;
+  color: var(--fg);
+  border-color: var(--border);
+  box-shadow: none;
+}
+.btn-danger{
+  background: var(--danger);
+  box-shadow: 0 6px 14px rgba(239, 68, 68, .25);
+}
+
+/* ===== Mensajes / chips ===== */
+.msg{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 12px;
+  border-radius: 999px;
+  border:1px solid var(--border);
+  background: var(--accent-weak);
+  color: var(--fg);
+  font-weight: 600;
+}
+.msg.ok{ background: color-mix(in oklab, var(--ok) 15%, var(--accent-weak)); border-color: color-mix(in oklab, var(--ok) 35%, var(--border)); }
+.msg.err{ background: color-mix(in oklab, var(--danger) 12%, var(--accent-weak)); border-color: color-mix(in oklab, var(--danger) 35%, var(--border)); }
+.msg.warn{ background: color-mix(in oklab, var(--warn) 12%, var(--accent-weak)); border-color: color-mix(in oklab, var(--warn) 35%, var(--border)); }
+
+/* Bloques de resultado/salida */
+#result, #msg, pre#out{
+  margin-top: 10px;
+}
+pre#out{
+  background: color-mix(in oklab, var(--fg) 6%, var(--bg));
+  color: var(--fg);
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  max-width: 100%;
+  overflow: auto;
+}
+
+/* ===== Navegación simple ===== */
+.nav{
+  display:flex; flex-wrap:wrap; gap:10px;
+  margin: 14px 0 0;
+}
+.nav a{
+  text-decoration:none; color: var(--fg);
+  padding: 10px 12px;
+  border:1px solid var(--border);
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--fg) 4%, var(--bg));
+}
+.nav a:hover{ border-color: var(--accent); }
+
+/* ===== Tablas (scroll horizontal en mobile) ===== */
+.table-wrap{
+  width:100%;
+  overflow-x:auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  box-shadow: var(--shadow);
+}
+table{
+  width:100%;
+  border-collapse: collapse;
+  min-width: 680px; /* fuerza scroll en pantallas angostas */
+}
+thead th{
+  text-align:left;
+  font-size: 0.9rem;
+  color: var(--muted);
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 1;
+}
+th, td{
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+tr:hover td{ background: color-mix(in oklab, var(--fg) 4%, var(--bg)); }
+
+/* Estado */
+.badge{
+  display:inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border: 1px solid var(--border);
+}
+.badge.ok{ background: color-mix(in oklab, var(--ok) 15%, var(--accent-weak)); color: var(--fg); }
+.badge.used{ background: color-mix(in oklab, var(--muted) 10%, var(--accent-weak)); color: var(--fg); }
+
+/* ===== Imágenes (QR) y video (scanner) ===== */
+img{ max-width: 100%; height: auto; }
+
+video{
+  width: 100%;
+  max-width: 560px;
+  background: #000;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+/* ===== Utilidades ===== */
+.row{ display:flex; gap: 10px; flex-wrap: wrap; }
+.col{ flex: 1 1 240px; }
+
+.center{ text-align: center; }
+.right{ text-align: right; }
+
+.mt-0{ margin-top: 0; }
+.mt-1{ margin-top: 8px; }
+.mt-2{ margin-top: 16px; }
+.mt-3{ margin-top: 24px; }
+
+.hide-mobile{ display:none; }
+@media (min-width: 640px){ .hide-mobile{ display: initial; } }
+
+/* ===== Footer fijo opcional en mobile ===== */
+.footer-bar{
+  position: sticky;
+  bottom: 0;
+  background: color-mix(in oklab, var(--bg) 85%, var(--fg));
+  border-top: 1px solid var(--border);
+  padding: 10px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* ===== Links ===== */
+a{ color: color-mix(in oklab, var(--accent) 80%, #0ea5e9); }
+a:hover{ text-decoration: underline; }
+
+/* ===== Buttons in tables ===== */
+table button{
+  padding: 8px 10px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--fg) 3%, var(--bg));
+  color: var(--fg);
+}
+table button:hover{
+  border-color: var(--accent);
+}
+table button.btn-danger{
+  border-color: transparent;
+  background: var(--danger);
+  color: #fff;
+}
+
+
+/* === Marca del evento (no toca tus h1 globales) === */
+.site-header{
+  width: 100%;
+  text-align: center;
+  margin: clamp(10px, 3vw, 22px) 0 12px;
+  padding: 0 clamp(12px, 4vw, 24px);
+}
+.site-header h1{
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: .2px;
+  line-height: 1.15;
+  font-size: clamp(26px, 6vw, 36px); /* grande pero responsivo */
+  color: var(--fg);
+}
+.site-header .subtitle{
+  margin-top: 4px;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: clamp(14px, 3.5vw, 18px);
+}
+
+/* (opcional) si querés ocultar cualquier footer fijo heredado */
+.footer-bar{ display: none !important; }
+
+
+/* === Cartel grande de resultado del escaneo === */
+.scan-overlay{
+  position: fixed;
+  inset: 0;
+  display: none;               /* se muestra con .show */
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.55);
+  z-index: 1000;
+  padding: 16px;
+}
+.scan-overlay.show{ display: flex; }
+.scan-overlay .box{
+  width: min(92vw, 520px);
+  background: var(--bg);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  padding: 22px 18px;
+}
+.scan-overlay .title{
+  font-weight: 800;
+  font-size: clamp(22px, 6.5vw, 36px);
+  line-height: 1.2;
+  margin: 0 0 6px;
+}
+.scan-overlay.ok   .title{ color: var(--ok); }
+.scan-overlay.warn .title{ color: var(--warn); }
+.scan-overlay.err  .title{ color: var(--danger); }
+.scan-overlay .sub{
+  font-weight: 600;
+  color: var(--muted);
+  font-size: clamp(14px, 3.5vw, 18px);
+}
+

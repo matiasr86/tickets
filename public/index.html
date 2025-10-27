@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#10b981" />
+  <title>Cargar entrada</title>
+  <link rel="stylesheet" href="/app.css">
+  <script src="/index.js" type="module" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <h1>Gran Peña Solidaria</h1>
+    <div class="subtitle">Todos por Juase</div>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <h1>Cargar entrada</h1>
+      <form id="f" novalidate>
+        <div class="row">
+          <div class="col">
+            <label for="token">Token vendedor (6 dígitos)</label>
+            <input id="token" required pattern="[0-9]{6}" inputmode="numeric" maxlength="6" placeholder="000000">
+          </div>
+          <div class="col">
+            <label for="buyer">Comprador</label>
+            <input id="buyer" required placeholder="Nombre y apellido">
+          </div>
+          <div class="col">
+            <label>Precio</label>
+            <input value="5000.00" disabled>
+          </div>
+        </div>
+        <div class="row">
+          <button type="submit">Generar entrada + QR</button>
+          <button type="reset" class="btn-secondary">Limpiar</button>
+        </div>
+      </form>
+
+
+      <div id="result" class="mt-2"></div>
+
+      <nav class="nav mt-2">
+        <a href="/list.html">Listado</a>
+        <a href="/scan.html">Escanear</a>
+        <a href="/admin.html">Admin</a>
+      </nav>
+    </div>
+  </div>
+</body>
+</html>

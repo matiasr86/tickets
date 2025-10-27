@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#10b981" />
+  <title>Admin · Vendedores</title>
+  <link rel="stylesheet" href="/app.css">
+  <script src="/admin.js" type="module" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <h1>Gran Peña Solidaria</h1>
+    <div class="subtitle">Todos por Juase</div>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <h1>Alta de vendedor</h1>
+
+      <form id="f" novalidate>
+        <div class="row">
+          <div class="col">
+            <label for="name">Nombre</label>
+            <input id="name" required placeholder="Ej. Juan Pérez">
+          </div>
+          <div class="col">
+            <label for="adminKey">Admin Key</label>
+            <input id="adminKey" required placeholder="Pegá tu ADMIN_KEY">
+          </div>
+        </div>
+        <div class="row">
+          <button type="submit" id="btn">Crear</button>
+          <button type="reset" class="btn-secondary">Limpiar</button>
+        </div>
+      </form>
+
+      <div id="msg" class="mt-1"></div>
+      <pre id="out" class="mt-1" aria-live="polite"></pre>
+
+      <nav class="nav mt-2">
+        <a href="/index.html">Cargar</a>
+        <a href="/list.html">Listado</a>
+        <a href="/scan.html">Escanear</a>
+      </nav>
+    </div>
+  </div>
+</body>
+</html>

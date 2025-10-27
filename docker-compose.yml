@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  app:
+    image: matiasr86/qr-tickets:latest
+    container_name: qr-tickets
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "6500:3000"   # host:container
